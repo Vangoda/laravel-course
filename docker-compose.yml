@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  web-server:
+    image: vangoda/web-base:1.3
+    volumes:
+      - laravel:/var/www/html
+      - ./shared:/var/www/html/shared
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xy-xdebug.ini
+    environment:
+      - VIRTUAL_HOST=course.laravel
+    networks:
+      - laravel
+      - nginx-proxy
+  
+  db:
+    image: mysql:8.0
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
+    networks:
+      - laravel
+      - nginx-proxy
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - "8080:80"
+    networks:
+      - mysql
+      - laravel
+      - nginx-proxy
+    environment:
+      - PMA_ABSOLUTE_URI=pma.localhost
+      - VIRTUAL_HOST=pma.localhost
+      - UPLOAD_LIMIT=100M
+      - HIDE_PHP_VERSION=true
+
+# Im using external reverse proxy as I run many docker containers
+# nginx-proxy:
+#   image: vangoda/nginx-proxy:latest
+#   ports:
+#     - "80:80"
+#   volumes:
+#     - /var/run/docker.sock:/tmp/docker.sock
+#   networks:
+#     - laravel
+
+volumes:
+  laravel:
+  db:
+
+networks:
+  mysql:
+  laravel:
+  nginx-proxy:
+    external: true
