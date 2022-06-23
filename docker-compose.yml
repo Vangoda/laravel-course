@@ -30,8 +30,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    ports:
-      - "8080:80"
     networks:
       - mysql
       - laravel
@@ -41,6 +39,8 @@ services:
       - VIRTUAL_HOST=pma.localhost
       - UPLOAD_LIMIT=100M
       - HIDE_PHP_VERSION=true
+
+  # Caching using redis
 
 # Im using external reverse proxy as I run many docker containers
 # nginx-proxy:
