@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web-server:
-    image: vangoda/laravel-base:1.1
+    image: vangoda/laravel-base:1.2
     # image: php:7.4-alpine
     volumes:
       - laravel:/var/www/html
