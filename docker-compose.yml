@@ -41,6 +41,8 @@ services:
       - HIDE_PHP_VERSION=true
 
   # Caching using redis
+  redis:
+    image: redis
 
 # Im using external reverse proxy as I run many docker containers
 # nginx-proxy:
