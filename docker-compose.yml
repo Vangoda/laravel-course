@@ -43,6 +43,9 @@ services:
   # Caching using redis
   redis:
     image: redis
+    networks:
+      - laravel
+      - nginx-proxy
 
 # Im using external reverse proxy as I run many docker containers
 # nginx-proxy:
