@@ -5,6 +5,7 @@ It must contain following:
   - npm
   - gulp
   - xdebug
+  - opcache
   - git
 
 Uses custom apache config files to change root directory to laravel's public folder '/var/www/html/public'.
