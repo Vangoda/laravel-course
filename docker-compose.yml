@@ -47,6 +47,17 @@ services:
       - laravel
       - nginx-proxy
 
+  # Email server
+  mail-server:
+    image: mailhog/mailhog
+    environment:
+      - VIRTUAL_HOST = mail.laravel
+    networks:
+      - nginx-proxy
+    ports:
+      - "8025:8025"
+      - "587:1025"
+
 # Im using external reverse proxy as I run many docker containers
 # nginx-proxy:
 #   image: vangoda/nginx-proxy:latest
