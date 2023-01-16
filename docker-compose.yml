@@ -14,7 +14,7 @@ services:
       - laravel
       - nginx-proxy
     tty: false
-  
+
   db:
     image: mysql:8.0
     volumes:
@@ -41,22 +41,22 @@ services:
       - HIDE_PHP_VERSION=true
 
   # Caching using redis
-  redis:
-    image: redis
-    networks:
-      - laravel
-      - nginx-proxy
+  # redis:
+  #   image: redis
+  #   networks:
+  #     - laravel
+  #     - nginx-proxy
 
-  # Email server
-  mail-server:
-    image: mailhog/mailhog
-    environment:
-      - VIRTUAL_HOST = mail.laravel
-    networks:
-      - nginx-proxy
-    ports:
-      - "8025:8025"
-      - "587:1025"
+  # # Email server
+  # mail-server:
+  #   image: mailhog/mailhog
+  #   environment:
+  #     - VIRTUAL_HOST = mail.laravel
+  #   networks:
+  #     - nginx-proxy
+  #   ports:
+  #     - "8025:8025"
+  #     - "587:1025"
 
 # Im using external reverse proxy as I run many docker containers
 # nginx-proxy:
